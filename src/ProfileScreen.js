@@ -6,7 +6,7 @@ class ProfileScreen extends Component {
         return (
             <View style={styles.layout}>
                 <View style={styles.navbar}>
-                 <Text style={styles.title}>Profile</Text>
+                 <Text style={styles.title}>Quote</Text>
                 </View>
             </View>
         )
@@ -16,12 +16,12 @@ class ProfileScreen extends Component {
 const styles = StyleSheet.create({
     layout: {
         flex: 1,
-        width: 100 + "%",
-        height: 100 + "%"
     },
     title: {
         fontWeight: "bold",
-        fontSize: 20
+        fontSize: 55,
+        color: "black",
+        fontFamily: "georgia"
     },
     navbar: {
         width: 100 + "%",

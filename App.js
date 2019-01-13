@@ -7,7 +7,6 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, View} from 'react-native';
 import ProfileScreen from './src/ProfileScreen.js';
 
 type Props = {};

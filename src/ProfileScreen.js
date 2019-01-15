@@ -13,8 +13,9 @@ class ProfileScreen extends Component {
         return (
             <View>
                 <View style={styles.navbar}>
-                 <Text style={styles.title}>Paul Zhang</Text>
-                    <Icon name="md-create" size={40} color="black"/>
+                    <Icon name="md-create" size={40} color="white" style={styles.writeIcon}/>
+                    <Text style={styles.title}>Paul Zhang</Text>
+                    <Icon name="md-cog" size={40} color="grey" style={styles.writeIcon}/>
                 </View>
                 <View style={styles.profileFlex}>
                     <Image style={styles.profileIcon}
@@ -22,12 +23,6 @@ class ProfileScreen extends Component {
                                uri:
                                    "https://qvcc.edu/wp-content/uploads/2017/03/Sun-PNG-Image.png"
                            }}/>
-                    <Text>{this.state.text}</Text>
-                </View>
-                <View style={styles.quoteTextBox}>
-                    <TextInput style={styles.quoteText}
-                               placeholder="Quote or Value"
-                               onChangeText={(text) => this.setState({text})}/>
                 </View>
             </View>
         )
@@ -42,26 +37,33 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         color: "#ffcd5e",
-        fontFamily: "Helvetica neue",
-        marginTop: 10,
+        fontFamily: "Helvetica Neue"
     },
     navbar: {
         width: 100 + "%",
         height: 60,
-        alignItems: "center",
+        display: "flex",
+        flexDirection: "row",
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: "black"
+        borderBottomColor: "black",
+        alignItems: "center",
+        justifyContent: "space-between"
+    },
+    writeIcon: {
+        marginRight: 5
     },
     profileIcon: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
+        flex: 1,
+        width: 400,
+        height: 400,
         margin: 30
     },
     profileFlex: {
+        display: "flex",
         flexDirection: "row",
         alignItems: "flex-start",
-        justifyContent: "center"
+        justifyContent: "center",
+        height: 50 + "%"
     },
     profileName: {
         fontWeight: "bold",

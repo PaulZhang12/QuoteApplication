@@ -34,6 +34,7 @@ class ProfileScreen extends Component {
         };
 }
 
+// TODO: Move styles to it's own folder and import it into each file that needs these styles
 const styles = StyleSheet.create({
     layout: {
         flex: 1

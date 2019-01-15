@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, Image, TextInput} from "react-native";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class ProfileScreen extends Component {
 
@@ -12,7 +13,8 @@ class ProfileScreen extends Component {
         return (
             <View>
                 <View style={styles.navbar}>
-                 <Text style={styles.title}>Quote</Text>
+                 <Text style={styles.title}>Paul Zhang</Text>
+                    <Icon name="md-create" size={24}/>
                 </View>
                 <View style={styles.profileFlex}>
                     <Text style={styles.profileName}>
@@ -37,22 +39,18 @@ class ProfileScreen extends Component {
 
 const styles = StyleSheet.create({
     layout: {
-        flex: 1,
-        height: 100+"%",
-        width: 100+"%"
+        flex: 1
     },
     title: {
-        fontWeight: "bold",
-        fontSize: 45,
-        color: "white",
-        fontFamily: "georgia",
-        paddingTop: 10,
+        fontSize: 30,
+        color: "#ffcd5e",
+        fontFamily: "Helvetica neue",
+        marginTop: 10,
     },
     navbar: {
         width: 100 + "%",
-        height: 75,
+        height: 60,
         alignItems: "center",
-        backgroundColor: "#14f7ff",
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: "black"
     },

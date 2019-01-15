@@ -14,12 +14,9 @@ class ProfileScreen extends Component {
             <View>
                 <View style={styles.navbar}>
                  <Text style={styles.title}>Paul Zhang</Text>
-                    <Icon name="md-create" size={24}/>
+                    <Icon name="md-create" size={40} color="black"/>
                 </View>
                 <View style={styles.profileFlex}>
-                    <Text style={styles.profileName}>
-                        Paul Zhang
-                    </Text>
                     <Image style={styles.profileIcon}
                            source ={{
                                uri:

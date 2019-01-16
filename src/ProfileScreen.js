@@ -1,30 +1,56 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image, TextInput} from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView} from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class ProfileScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {text: ""};
+        this.state = {
+            name: "Paul Zhang",
+            profilePic:  "https://qvcc.edu/wp-content/uploads/2017/03/Sun-PNG-Image.png",
+            followers: 205,
+            stories: 10,
+            upvotes: 355
+        };
     }
 
     render() {
         return (
-            <View>
+            <ScrollView style={styles.layout}>
                 <View style={styles.navbar}>
-                    <Icon name="md-create" size={40} color="white" style={styles.writeIcon}/>
+                    <Icon name="ios-cog" size={35} color="grey" style={styles.settingsIcon}/>
                     <Text style={styles.title}>Paul Zhang</Text>
-                    <Icon name="md-cog" size={40} color="grey" style={styles.writeIcon}/>
+                    <Icon name="ios-send" size={35} color="grey" style={styles.sendIcon}/>
+                </View>
+                <View style={styles.stats}>
+                    <View style={styles.indStats}>
+                        <Text style={styles.statText}>Followers</Text>
+                        <Text style={styles.statText}>{this.state.upvotes}</Text>
+                    </View>
+                    <View style={styles.indStats}>
+                        <Text style={styles.statText}>Stories Written</Text>
+                        <Text style={styles.statText}>{this.state.stories}</Text>
+                    </View>
+                    <View style={styles.indStats}>
+                        <Text style={styles.statText}>Upvotes</Text>
+                        <Text style={styles.statText}>{this.state.upvotes}</Text>
+                    </View>
                 </View>
                 <View style={styles.profileFlex}>
                     <Image style={styles.profileIcon}
                            source ={{
                                uri:
-                                   "https://qvcc.edu/wp-content/uploads/2017/03/Sun-PNG-Image.png"
+                                   this.state.profilePic
                            }}/>
                 </View>
-            </View>
+
+                <View style={styles.bottomNavbar}>
+                    <Text>Your Quotes</Text>
+                    <Text>Bookmarked</Text>
+                    <Text>Categories</Text>
+                </View>
+            </ScrollView>
         )
         };
 }
@@ -32,12 +58,13 @@ class ProfileScreen extends Component {
 // TODO: Move styles to it's own folder and import it into each file that needs these styles
 const styles = StyleSheet.create({
     layout: {
-        flex: 1
+        display: "flex"
     },
     title: {
         fontSize: 30,
         color: "#ffcd5e",
-        fontFamily: "Helvetica Neue"
+        fontFamily: "Helvetica Neue",
+        paddingTop: 5
     },
     navbar: {
         width: 100 + "%",
@@ -45,44 +72,55 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: "black",
-        alignItems: "center",
+        borderBottomColor: "grey",
+        alignItems: "baseline",
         justifyContent: "space-between"
     },
-    writeIcon: {
-        marginRight: 5
+    settingsIcon: {
+        marginLeft: 10
+    },
+    sendIcon:{
+        marginRight: 10
     },
     profileIcon: {
         flex: 1,
-        width: 400,
         height: 400,
-        margin: 30
+        borderRadius: 200
     },
     profileFlex: {
         display: "flex",
         flexDirection: "row",
-        alignItems: "flex-start",
+        alignItems: "flex-end",
         justifyContent: "center",
-        height: 50 + "%"
+        paddingBottom: 10
     },
-    profileName: {
-        fontWeight: "bold",
-        fontSize: 35,
-        color: "black",
-        fontFamily: "georgia",
-        marginTop: 50,
-        marginRight: 10
+    stats: {
+        display: "flex",
+        justifyContent: "space-evenly",
+        flexDirection: "row",
+        paddingTop: 5,
     },
-    quoteText: {
-        fontSize: 20
+    indStats: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
     },
-    quoteTextBox: {
-        height: 50,
-        width: 80+"%",
-        borderWidth: StyleSheet.hairlineWidth,
-        borderColor: "grey",
-        alignSelf: "center",
-        marginTop: 50
+    statText: {
+        fontFamily: "Helvetica Neue",
+        fontWeight: "700",
+        fontSize: 15
+    },
+    bottomNavbar: {
+        flex: 1,
+        width: 100+"%",
+        height: 30,
+        justifyContent: "space-evenly",
+        flexDirection: "row",
+        alignItems: "center",
+        backgroundColor: "#D3D3D3"
+    },
+    bottomText: {
+        fontFamily: "Helvetica Neue",
     }
 
 })

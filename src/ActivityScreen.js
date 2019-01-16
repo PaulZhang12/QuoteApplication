@@ -13,19 +13,6 @@ class ActivityScreen extends Component {
     render() {
         return (
             <View>
-                <View style={styles.profileFlex}>
-                    <Image style={styles.profileIcon}
-                           source ={{
-                               uri:
-                                   "https://qvcc.edu/wp-content/uploads/2017/03/Sun-PNG-Image.png"
-                           }}/>
-                    <Text>{this.state.text}</Text>
-                </View>
-                <View style={styles.quoteTextBox}>
-                    <TextInput style={styles.quoteText}
-                               placeholder="Quote or Value"
-                               onChangeText={(text) => this.setState({text})}/>
-                </View>
             </View>
         )
     };

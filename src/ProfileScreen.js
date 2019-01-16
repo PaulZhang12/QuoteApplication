@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image, ScrollView} from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView, TouchableHighlight} from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class ProfileScreen extends Component {
@@ -8,11 +8,16 @@ class ProfileScreen extends Component {
         super(props);
         this.state = {
             name: "Paul Zhang",
-            profilePic:  "https://qvcc.edu/wp-content/uploads/2017/03/Sun-PNG-Image.png",
+            profilePic:  "https://twistedsifter.files.wordpress.com/2016/04/lukas-furlan-exploring-dolomites-self-portrait-skywalker.jpg",
             followers: 205,
             stories: 10,
             upvotes: 355
         };
+    }
+
+
+    onPressQuote = () => {
+        alert("You pressed");
     }
 
     render() {
@@ -44,9 +49,14 @@ class ProfileScreen extends Component {
                                    this.state.profilePic
                            }}/>
                 </View>
-
                 <View style={styles.bottomNavbar}>
-                    <Text>Your Quotes</Text>
+
+                    <TouchableHighlight
+                        onPress = {this.onPressQuote}>
+                        <View>
+                            <Text>Your Quotes</Text>
+                        </View>
+                    </TouchableHighlight>
                     <Text>Bookmarked</Text>
                     <Text>Categories</Text>
                 </View>
@@ -54,6 +64,10 @@ class ProfileScreen extends Component {
         )
         };
 }
+
+
+
+
 
 // TODO: Move styles to it's own folder and import it into each file that needs these styles
 const styles = StyleSheet.create({
@@ -123,6 +137,6 @@ const styles = StyleSheet.create({
         fontFamily: "Helvetica Neue",
     }
 
-})
+});
 
 export default ProfileScreen;

@@ -9,7 +9,7 @@ class FeedScreen extends Component {
                 <ScrollView style={styles.layout}>
                     <View style={styles.navbar}>
                         <FeatherIcon name="edit" size={35} color="black" style={styles.settingsIcon}/>
-                        <Text style={styles.title}>Mindful</Text>
+                        <Text style={styles.title}>Philos</Text>
                         <Icon name="ios-send" size={35} color="black" style={styles.sendIcon}/>
                     </View>
                 </ScrollView>

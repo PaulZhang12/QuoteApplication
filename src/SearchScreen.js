@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, TextInput} from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import ProfileScreen from "./ProfileScreen";
-
 
 class SearchScreen extends Component {
 
@@ -16,7 +14,7 @@ class SearchScreen extends Component {
             <View style={styles.layout}>
                 <View style={styles.searchContainer}>
                     <Icon name="ios-search" size={35} style={styles.searchIcon}/>
-                    <TextInput placeholder="Find Quotes!" style={styles.searchText}></TextInput>
+                    <TextInput placeholder="Find A Philo" style={styles.searchText}></TextInput>
                 </View>
             </View>
         )
@@ -36,7 +34,8 @@ const styles = StyleSheet.create({
         borderColor: "grey",
         borderWidth: 1,
         marginTop: 30,
-        flexDirection: "row"
+        flexDirection: "row",
+        alignItems: "flex-start"
     },
 
     searchIcon: {
@@ -46,7 +45,8 @@ const styles = StyleSheet.create({
 
     searchText: {
         fontSize: 18,
-        paddingTop: 6
+        paddingTop: 5,
+        marginLeft: 10
     }
 
 });

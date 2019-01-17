@@ -8,9 +8,9 @@ class FeedScreen extends Component {
         return (
                 <ScrollView style={styles.layout}>
                     <View style={styles.navbar}>
-                        <FeatherIcon name="edit" size={35} color="grey" style={styles.settingsIcon}/>
+                        <FeatherIcon name="edit" size={35} color="black" style={styles.settingsIcon}/>
                         <Text style={styles.title}>Mindful</Text>
-                        <Icon name="ios-send" size={35} color="grey" style={styles.sendIcon}/>
+                        <Icon name="ios-send" size={35} color="black" style={styles.sendIcon}/>
                     </View>
                 </ScrollView>
         )
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
             paddingTop: 5
     },
     navbar: {
-        width: 100 + "%",
+            width: 100 + "%",
             height: 60,
             display: "flex",
             flexDirection: "row",

@@ -55,11 +55,11 @@ class ProfileScreen extends Component {
                     <TouchableHighlight
                         onPress = {this.onPressQuote}>
                         <View>
-                            <Text>Your Quotes</Text>
+                            <Text style={styles.bottomText}>Your Quotes</Text>
                         </View>
                     </TouchableHighlight>
-                    <Text>Bookmarked</Text>
-                    <Text>Categories</Text>
+                    <Text style={styles.bottomText}>Bookmarked</Text>
+                    <Text style={styles.bottomText}>Categories</Text>
                 </View>
             </ScrollView>
         )
@@ -92,10 +92,12 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     settingsIcon: {
-        marginLeft: 10
+        marginLeft: 10,
+        color: "black"
     },
     sendIcon:{
-        marginRight: 10
+        marginRight: 10,
+        color: "black"
     },
     profileIcon: {
         flex: 1,
@@ -122,7 +124,7 @@ const styles = StyleSheet.create({
     },
     statText: {
         fontFamily: "Helvetica Neue",
-        fontWeight: "700",
+        fontWeight: "600",
         fontSize: 15,
         color: "black"
     },
@@ -137,6 +139,7 @@ const styles = StyleSheet.create({
     },
     bottomText: {
         fontFamily: "Helvetica Neue",
+        color: "black"
     }
 
 });

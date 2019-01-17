@@ -42,36 +42,36 @@ const TabNavigator = createBottomTabNavigator({
     Feed: {
         screen: Feed,
         navigationOptions: {
-            tabBarLabel: '',
+            tabBarLabel:  ' ',
             tabBarIcon: ({ tintColor }) => (
-                <FeatherIcon name='home' color={tintColor} size={24} />
+                <FeatherIcon name='home' color={tintColor} size={30} />
             )
         }
     },
     Search: {
         screen: Search,
         navigationOptions: {
-            tabBarLabel: '',
+            tabBarLabel: ' ',
             tabBarIcon: ({ tintColor }) => (
-                <FeatherIcon name='search' color={tintColor} size={24} />
+                <FeatherIcon name='search' color={tintColor} size={30} />
             )
         }
     },
     Activity: {
         screen: Activity,
         navigationOptions: {
-            tabBarLabel: '',
+            tabBarLabel: ' ',
             tabBarIcon: ({ tintColor }) => (
-                <FeatherIcon name='inbox' color={tintColor} size={24} />
+                <FeatherIcon name='inbox' color={tintColor} size={30} />
             )
         }
     },
     Profile: {
         screen: Profile,
         navigationOptions: {
-            tabBarLabel: '',
+            tabBarLabel: ' ',
             tabBarIcon: ({ tintColor }) => (
-                <MaterialIcon name='person-outline' color={tintColor} size={24} />
+                <MaterialIcon name='person-outline' color={tintColor} size={30} />
             )
         }
     }

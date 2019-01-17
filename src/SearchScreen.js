@@ -31,14 +31,14 @@ const styles = StyleSheet.create({
     searchContainer: {
         width: 90+"%",
         height: 40,
+        borderColor: "grey",
         borderWidth: 1,
-        marginTop: 20,
-        shadowRadius: 10
+        marginTop: 30
     },
 
     searchIcon: {
         marginLeft: 10,
-        color: "black"
+        color: "grey"
     }
 
 });

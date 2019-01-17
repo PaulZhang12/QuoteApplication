@@ -47,7 +47,8 @@ class ProfileScreen extends Component {
                            source ={{
                                uri:
                                    this.state.profilePic
-                           }}/>
+                           }}
+                           resizeMode="cover"/>
                 </View>
                 <View style={styles.bottomNavbar}>
 
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
     profileIcon: {
         flex: 1,
         height: 400,
-        borderRadius: 200
+        width: 400
     },
     profileFlex: {
         display: "flex",
@@ -122,7 +123,8 @@ const styles = StyleSheet.create({
     statText: {
         fontFamily: "Helvetica Neue",
         fontWeight: "700",
-        fontSize: 15
+        fontSize: 15,
+        color: "black"
     },
     bottomNavbar: {
         flex: 1,

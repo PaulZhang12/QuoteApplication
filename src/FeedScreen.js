@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import {View, Text, ScrollView, StyleSheet} from "react-native";
+import {View, Text, ScrollView, StyleSheet, SafeAreaView} from "react-native";
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/Ionicons';
+
 
 class FeedScreen extends Component {
 
@@ -14,6 +15,7 @@ class FeedScreen extends Component {
 
     render() {
         return (
+            <SafeAreaView style={{ flex: 1 }}>
                 <ScrollView style={styles.layout}>
                     <View style={styles.navbar}>
                         <FeatherIcon name="edit" size={35} color="black" style={styles.settingsIcon}/>
@@ -21,6 +23,7 @@ class FeedScreen extends Component {
                         <Icon name="ios-send" size={35} color="black" style={styles.sendIcon}/>
                     </View>
                 </ScrollView>
+            </SafeAreaView>
         )
     };
 }

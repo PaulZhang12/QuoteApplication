@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image, ScrollView, TouchableHighlight} from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView, TouchableHighlight, SafeAreaView} from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class ProfileScreen extends Component {
@@ -22,46 +22,48 @@ class ProfileScreen extends Component {
 
     render() {
         return (
-            <ScrollView style={styles.layout}>
-                <View style={styles.navbar}>
-                    <Icon name="ios-cog" size={35} color="grey" style={styles.settingsIcon}/>
-                    <Text style={styles.title}>Paul Zhang</Text>
-                    <Icon name="ios-send" size={35} color="grey" style={styles.sendIcon}/>
-                </View>
-                <View style={styles.stats}>
-                    <View style={styles.indStats}>
-                        <Text style={styles.statText}>Followers</Text>
-                        <Text style={styles.statText}>{this.state.upvotes}</Text>
+            <SafeAreaView style={{ flex: 1 }}>
+                <ScrollView style={styles.layout}>
+                    <View style={styles.navbar}>
+                        <Icon name="ios-cog" size={35} color="grey" style={styles.settingsIcon}/>
+                        <Text style={styles.title}>Paul Zhang</Text>
+                        <Icon name="ios-send" size={35} color="grey" style={styles.sendIcon}/>
                     </View>
-                    <View style={styles.indStats}>
-                        <Text style={styles.statText}>Stories Written</Text>
-                        <Text style={styles.statText}>{this.state.stories}</Text>
-                    </View>
-                    <View style={styles.indStats}>
-                        <Text style={styles.statText}>Upvotes</Text>
-                        <Text style={styles.statText}>{this.state.upvotes}</Text>
-                    </View>
-                </View>
-                <View style={styles.profileFlex}>
-                    <Image style={styles.profileIcon}
-                           source ={{
-                               uri:
-                                   this.state.profilePic
-                           }}
-                           resizeMode="cover"/>
-                </View>
-                <View style={styles.bottomNavbar}>
-
-                    <TouchableHighlight
-                        onPress = {this.onPressQuote}>
-                        <View>
-                            <Text style={styles.bottomText}>Your Quotes</Text>
+                    <View style={styles.stats}>
+                        <View style={styles.indStats}>
+                            <Text style={styles.statText}>Followers</Text>
+                            <Text style={styles.statText}>{this.state.upvotes}</Text>
                         </View>
-                    </TouchableHighlight>
-                    <Text style={styles.bottomText}>Bookmarked</Text>
-                    <Text style={styles.bottomText}>Categories</Text>
-                </View>
-            </ScrollView>
+                        <View style={styles.indStats}>
+                            <Text style={styles.statText}>Stories Written</Text>
+                            <Text style={styles.statText}>{this.state.stories}</Text>
+                        </View>
+                        <View style={styles.indStats}>
+                            <Text style={styles.statText}>Upvotes</Text>
+                            <Text style={styles.statText}>{this.state.upvotes}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.profileFlex}>
+                        <Image style={styles.profileIcon}
+                               source ={{
+                                   uri:
+                                       this.state.profilePic
+                               }}
+                               resizeMode="cover"/>
+                    </View>
+                    <View style={styles.bottomNavbar}>
+
+                        <TouchableHighlight
+                            onPress = {this.onPressQuote}>
+                            <View>
+                                <Text style={styles.bottomText}>Your Quotes</Text>
+                            </View>
+                        </TouchableHighlight>
+                        <Text style={styles.bottomText}>Bookmarked</Text>
+                        <Text style={styles.bottomText}>Categories</Text>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
         )
         };
 }

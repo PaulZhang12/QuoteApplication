@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, TextInput} from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
+import ProfileScreen from "./ProfileScreen";
 
 
 class SearchScreen extends Component {
@@ -13,7 +15,7 @@ class SearchScreen extends Component {
         return (
             <View style={styles.layout}>
                 <View style={styles.searchContainer}>
-
+                    <Icon name="ios-search" size={35} style={styles.searchIcon}/>
                 </View>
             </View>
         )
@@ -28,11 +30,16 @@ const styles = StyleSheet.create({
 
     searchContainer: {
         width: 90+"%",
-        height: 50,
+        height: 40,
         borderWidth: 1,
-        marginTop: 10
-    }
+        marginTop: 20,
+        shadowRadius: 10
+    },
 
+    searchIcon: {
+        marginLeft: 10,
+        color: "black"
+    }
 
 });
 

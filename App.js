@@ -62,7 +62,7 @@ const TabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarLabel: 'Activity',
             tabBarIcon: ({tintColor}) => (
-                <FeatherIcon name='inbox' size={24} />
+                <FeatherIcon name='inbox' size={24}/>
             )
         }
     },

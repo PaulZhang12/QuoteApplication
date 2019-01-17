@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {View, Text, ScrollView, StyleSheet} from "react-native";
+import FeatherIcon from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class FeedScreen extends Component {
@@ -7,8 +8,8 @@ class FeedScreen extends Component {
         return (
                 <ScrollView style={styles.layout}>
                     <View style={styles.navbar}>
-                        <Icon name="ios-cog" size={35} color="grey" style={styles.settingsIcon}/>
-                        <Text style={styles.title}>Repara</Text>
+                        <FeatherIcon name="edit" size={35} color="grey" style={styles.settingsIcon}/>
+                        <Text style={styles.title}>Mindful</Text>
                         <Icon name="ios-send" size={35} color="grey" style={styles.sendIcon}/>
                     </View>
                 </ScrollView>

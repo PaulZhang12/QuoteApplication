@@ -4,6 +4,14 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class FeedScreen extends Component {
+
+
+    constructor(props){
+        super(props);
+        this.state = {
+        }
+    }
+
     render() {
         return (
                 <ScrollView style={styles.layout}>

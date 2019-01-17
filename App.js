@@ -42,40 +42,45 @@ const TabNavigator = createBottomTabNavigator({
     Feed: {
         screen: Feed,
         navigationOptions: {
-            tabBarLabel: 'Feed',
-            tabBarIcon: ({tintColor}) => (
-                <FeatherIcon name='home' size={24} />
+            tabBarLabel: '',
+            tabBarIcon: ({ tintColor }) => (
+                <FeatherIcon name='home' color={tintColor} size={24} />
             )
         }
     },
     Search: {
         screen: Search,
         navigationOptions: {
-            tabBarLabel: 'Search',
-            tabBarIcon: ({tintColor}) => (
-                <FeatherIcon name='search' size={24} />
+            tabBarLabel: '',
+            tabBarIcon: ({ tintColor }) => (
+                <FeatherIcon name='search' color={tintColor} size={24} />
             )
         }
     },
     Activity: {
         screen: Activity,
         navigationOptions: {
-            tabBarLabel: 'Activity',
-            tabBarIcon: ({tintColor}) => (
-                <FeatherIcon name='inbox' size={24}/>
+            tabBarLabel: '',
+            tabBarIcon: ({ tintColor }) => (
+                <FeatherIcon name='inbox' color={tintColor} size={24} />
             )
         }
     },
     Profile: {
         screen: Profile,
         navigationOptions: {
-            tabBarLabel: 'Profile',
-            tabBarIcon: ({tintColor}) => (
-                <MaterialIcon name='person-outline' size={24} />
+            tabBarLabel: '',
+            tabBarIcon: ({ tintColor }) => (
+                <MaterialIcon name='person-outline' color={tintColor} size={24} />
             )
         }
     }
-})
+}, {
+    tabBarOptions: {
+        activeTintColor: '#72E5B6',
+        inactiveTintColor: 'black'
+    }
+});
 
 export default createAppContainer(TabNavigator);
 

@@ -9,16 +9,16 @@ class CardComponent extends Component{
     render(){
 
         return (
-        <Card style={{borderColor: "#3EC094"}}>
-            <CardItem header bordered style={styles.card}>
-                <Text style={styles.header}>{this.props.quote}</Text>
-                <Text>{this.props.author}</Text>
-            </CardItem>
-            <CardItem>
-                <Body>
-                </Body>
-            </CardItem>
-        </Card>
+            <Card style={{borderColor: "#3EC094"}}>
+                <CardItem header bordered style={styles.card}>
+                    <Text style={styles.header}>{this.props.quote}</Text>
+                    <Text>{this.props.author}</Text>
+                </CardItem>
+                <CardItem>
+                    <Body>
+                    </Body>
+                </CardItem>
+            </Card>
         );
     }
 }
@@ -33,6 +33,6 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column"
     }
-})
+});
 
 export default CardComponent;

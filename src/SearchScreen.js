@@ -14,7 +14,7 @@ class SearchScreen extends Component {
             <View style={styles.layout}>
                 <View style={styles.searchContainer}>
                     <Icon name="ios-search" size={35} style={styles.searchIcon}/>
-                    <TextInput placeholder="Find A Philo" style={styles.searchText}></TextInput>
+                    <TextInput placeholder="Find the Philos that will change your life" style={styles.searchText}></TextInput>
                 </View>
             </View>
         )
@@ -44,9 +44,9 @@ const styles = StyleSheet.create({
     },
 
     searchText: {
-        fontSize: 18,
-        paddingTop: 5,
-        marginLeft: 10
+        fontSize: 15,
+        paddingTop: 10,
+        paddingLeft: 10
     }
 
 });

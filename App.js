@@ -44,7 +44,7 @@ const TabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarLabel:  ' ',
             tabBarIcon: ({ tintColor }) => (
-                <FeatherIcon name='home' color={tintColor} size={30} />
+                <FeatherIcon name='home' color={tintColor} size={30} style={{marginTop: 5}}/>
             )
         }
     },
@@ -53,7 +53,7 @@ const TabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarLabel: ' ',
             tabBarIcon: ({ tintColor }) => (
-                <FeatherIcon name='search' color={tintColor} size={30} />
+                <FeatherIcon name='search' color={tintColor} size={30} style={{marginTop: 5}}/>
             )
         }
     },
@@ -62,7 +62,7 @@ const TabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarLabel: ' ',
             tabBarIcon: ({ tintColor }) => (
-                <FeatherIcon name='inbox' color={tintColor} size={30} />
+                <FeatherIcon name='inbox' color={tintColor} size={30} style={{marginTop: 5}}/>
             )
         }
     },
@@ -71,7 +71,7 @@ const TabNavigator = createBottomTabNavigator({
         navigationOptions: {
             tabBarLabel: ' ',
             tabBarIcon: ({ tintColor }) => (
-                <MaterialIcon name='person-outline' color={tintColor} size={30} />
+                <MaterialIcon name='person-outline' color={tintColor} size={30} style={{marginTop: 5}}/>
             )
         }
     }

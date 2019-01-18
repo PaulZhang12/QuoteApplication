@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Text, Image, TextInput} from "react-native";
+import { StyleSheet, View, Text, Image, TextInput, SafeAreaView} from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 
 
@@ -12,8 +12,7 @@ class ActivityScreen extends Component {
 
     render() {
         return (
-            <View>
-            </View>
+            <SafeAreaView style={{ flex: 1 }} />
         )
     };
 }

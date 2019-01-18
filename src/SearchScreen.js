@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Text, Image, TextInput} from "react-native";
+import { StyleSheet, View, Text, Image, TextInput, SafeAreaView} from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
 class SearchScreen extends Component {
@@ -11,12 +11,14 @@ class SearchScreen extends Component {
 
     render() {
         return (
-            <View style={styles.layout}>
-                <View style={styles.searchContainer}>
-                    <Icon name="ios-search" size={35} style={styles.searchIcon}/>
-                    <TextInput placeholder="Find the Philos that will change your life" style={styles.searchText}></TextInput>
+            <SafeAreaView style={{ flex: 1 }}>
+                <View style={styles.layout}>
+                    <View style={styles.searchContainer}>
+                        <Icon name="ios-search" size={35} style={styles.searchIcon}/>
+                        <TextInput placeholder="Find A Philo" style={styles.searchText}></TextInput>
+                    </View>
                 </View>
-            </View>
+            </SafeAreaView>
         )
     };
 }
@@ -44,9 +46,9 @@ const styles = StyleSheet.create({
     },
 
     searchText: {
-        fontSize: 15,
-        paddingTop: 10,
-        paddingLeft: 10
+        fontSize: 18,
+        paddingTop: 5,
+        marginLeft: 10
     }
 
 });

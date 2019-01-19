@@ -54,3 +54,12 @@ buck-out/
 
 # Bundle artifact
 *.jsbundle
+
+#fonts
+
+android/app/src/main/assets/fonts/
+EvilIcons.ttf
+Feather.ttf
+Ionicons.ttf
+MaterialCommunityIcons.ttf
+Octicons.ttf

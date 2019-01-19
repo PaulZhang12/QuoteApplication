@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginTop: 30,
         flexDirection: "row",
-        alignItems: "baseline"
+        alignItems: "flex-start"
     },
 
     searchIcon: {

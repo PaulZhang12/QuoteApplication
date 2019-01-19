@@ -18,7 +18,7 @@ class ProfileScreen extends Component {
 
     onPressQuote = () => {
         alert("You pressed");
-    };
+    }
 
     render() {
         return (

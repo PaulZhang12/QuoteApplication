@@ -42,38 +42,41 @@ const TabNavigator = createBottomTabNavigator({
     Feed: {
         screen: Feed,
         navigationOptions: {
+            tabBarLabel:  ' ',
             tabBarIcon: ({ tintColor }) => (
-                <FeatherIcon name='home' color={tintColor} size={32} style={{marginTop: 8}}/>
+                <FeatherIcon name='home' color={tintColor} size={30} style={{marginTop: 5}}/>
             )
         }
     },
     Search: {
         screen: Search,
         navigationOptions: {
+            tabBarLabel: ' ',
             tabBarIcon: ({ tintColor }) => (
-                <FeatherIcon name='search' color={tintColor} size={32} style={{marginTop: 8}}/>
+                <FeatherIcon name='search' color={tintColor} size={30} style={{marginTop: 5}}/>
             )
         }
     },
     Activity: {
         screen: Activity,
         navigationOptions: {
+            tabBarLabel: ' ',
             tabBarIcon: ({ tintColor }) => (
-                <FeatherIcon name='inbox' color={tintColor} size={32} style={{marginTop: 8}}/>
+                <FeatherIcon name='inbox' color={tintColor} size={30} style={{marginTop: 5}}/>
             )
         }
     },
     Profile: {
         screen: Profile,
         navigationOptions: {
+            tabBarLabel: ' ',
             tabBarIcon: ({ tintColor }) => (
-                <MaterialIcon name='person-outline' color={tintColor} size={32} style={{marginTop: 8}}/>
+                <MaterialIcon name='person-outline' color={tintColor} size={30} style={{marginTop: 5}}/>
             )
         }
     }
 }, {
     tabBarOptions: {
-        showLabel: false,
         activeTintColor: '#3EC094',
         inactiveTintColor: 'black'
     }

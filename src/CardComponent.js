@@ -13,8 +13,15 @@ class CardComponent extends Component{
         return (
         <Card style={{borderColor: "#3EC094"}}>
             <CardItem header bordered style={styles.card}>
-                <Text>{this.props.author}</Text>
-                <Text style={styles.header}>{this.props.quote}</Text>
+                <Left>
+                    <Thumbnail source={{
+                        uri: "https://twistedsifter.files.wordpress.com/2016/04/lukas-furlan-exploring-dolomites-self-portrait-skywalker.jpg"
+                    }}/>
+                </Left>
+                <Body style={{alignItems: "center"}}>
+                    <Text>{this.props.author}</Text>
+                    <Text style={styles.header}>{this.props.quote}</Text>
+                </Body>
             </CardItem>
             <CardItem>
                 <Body style={styles.body}>
@@ -26,10 +33,13 @@ class CardComponent extends Component{
                 </Body>
             </CardItem>
             <CardItem>
-                <Body style={styles.body}>
-                    <FontIcon name={"hand-paper-o"} size={30}/>
-                    <FeatherIcon name={"bookmark"} size={30}/>
-                </Body>
+                <Left style={styles.body}>
+                    <FontIcon name={"hand-paper-o"} size={30} style={styles.icon}/>
+                    <FeatherIcon name={"bookmark"} size={30} style={styles.icon}/>
+                </Left>
+                <Right>
+                    <FeatherIcon name={"book-open"} size={30} style={styles.icon}/>
+                </Right>
             </CardItem>
         </Card>
         );
@@ -55,7 +65,7 @@ const styles = StyleSheet.create({
     },
 
     icon: {
-        flex: 1,
+        marginHorizontal: 5
     }
 });
 

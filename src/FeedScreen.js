@@ -10,7 +10,10 @@ class FeedScreen extends Component {
     constructor(props){
         super(props);
         this.state = {
-            isLoading: true
+            isLoading: true,
+            philo: "Far curiosity incommode now led smallness allowance. Favour bed assure son things yet. She consisted consulted elsewhere happiness disposing household any old the. Widow downs you new shade drift hopes small. So otherwise commanded sweetness we improving. Instantly by daughters resembled unwilling principle so middleton. Fail most room even gone her end like. Comparison dissimilar unpleasant six compliment two unpleasing any add. Ashamed my company thought wishing colonel it prevent he in. Pretended residence are something far engrossed old off. \n" +
+            "\n" +
+            "Entire any had depend and figure winter. Change stairs and men likely wisdom new happen piqued six. Now taken him timed sex world get. Enjoyed married an feeling delight pursuit as offered. As admire roused length likely played pretty to no. Means had joy miles her merry solid order. "
         }
     }
 
@@ -36,7 +39,7 @@ class FeedScreen extends Component {
     getCardArray(){
         let CardArray = [];
         this.state.quoteArray.map(quoteObject => {
-            CardArray.push(<CardComponent quote={quoteObject.quote} author={quoteObject.author}/>);
+            CardArray.push(<CardComponent quote={quoteObject.quote} author={quoteObject.author} beginningText={this.state.philo.substring(0,200) + "..."}/>);
         });
         return CardArray;
     }

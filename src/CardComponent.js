@@ -27,9 +27,7 @@ class CardComponent extends Component{
                 <CardItem>
                     <Body style={styles.body}>
                     <Text>
-                        Hello my name is Paul. I like pineapples. Victor Wei cannot read his memory for his computer.
-                        Ethan Haezebroeck loves, loves the good grass. Hwan is my brother. Mitchell hermon is a weird
-                        fella, but idk he's taught me a lot about his race.
+                        {this.props.beginningText}
                     </Text>
                     </Body>
                 </CardItem>

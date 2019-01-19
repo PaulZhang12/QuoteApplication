@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, Image, ScrollView, TouchableHighlight, SafeAreaView} from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
+import {Button} from 'native-base';
 
 class ProfileScreen extends Component {
 
@@ -15,19 +16,18 @@ class ProfileScreen extends Component {
         };
     }
 
-
-    onPressQuote = () => {
-        alert("You pressed");
-    }
-
     render() {
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <ScrollView style={styles.layout}>
                     <View style={styles.navbar}>
+                        <Button transparent rounded onPress={() => this.props.navigation.navigate('Settings')}>
                         <Icon name="ios-cog" size={35} color="grey" style={styles.settingsIcon}/>
+                        </Button>
                         <Text style={styles.title}>Paul Zhang</Text>
+                        <Button transparent rounded>
                         <Icon name="ios-send" size={35} color="grey" style={styles.sendIcon}/>
+                        </Button>
                     </View>
                     <View style={styles.stats}>
                         <View style={styles.indStats}>
@@ -80,12 +80,11 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         color: "#ffcd5e",
-        fontFamily: "Helvetica Neue",
-        paddingTop: 5
+        fontFamily: "Helvetica Neue"
     },
     navbar: {
         width: 100 + "%",
-        height: 60,
+        height: 50,
         display: "flex",
         flexDirection: "row",
         borderBottomWidth: StyleSheet.hairlineWidth,
@@ -94,12 +93,12 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     settingsIcon: {
-        marginLeft: 10,
-        color: "black"
+        color: "black",
+        marginLeft: 5
     },
     sendIcon:{
-        marginRight: 10,
-        color: "black"
+        color: "black",
+        marginRight: 5
     },
     profileIcon: {
         flex: 1,
@@ -142,7 +141,7 @@ const styles = StyleSheet.create({
     bottomText: {
         fontFamily: "Helvetica Neue",
         color: "black"
-    }
+    },
 
 });
 

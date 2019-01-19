@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, Image} from "react-native";
 import FontIcon from 'react-native-vector-icons/FontAwesome';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 
 import {Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon} from 'native-base';
 
@@ -38,7 +39,7 @@ class CardComponent extends Component{
                     <FeatherIcon name={"bookmark"} size={30} style={styles.icon}/>
                 </Left>
                 <Right>
-                    <FeatherIcon name={"book-open"} size={30} style={styles.icon}/>
+                    <Ionicon name={"md-book"} size={32} style={styles.icon}/>
                 </Right>
             </CardItem>
         </Card>

@@ -9,7 +9,7 @@
 import TabNavigator from './src/TabNavigator.js'
 import SettingsScreen from './src/SettingsScreen.js'
 import CreatePhiloScreen from './src/CreatePhiloScreen.js'
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator, createAppContainer} from 'react-navigation';
 import React, {Component} from "react";
 
 class Main extends Component<Props> {
@@ -37,4 +37,4 @@ const App = createStackNavigator({
 });
 
 
-export default App;
+export default createAppContainer(App);

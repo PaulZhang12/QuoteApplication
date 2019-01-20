@@ -6,7 +6,6 @@ class SearchScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {text: ""};
     }
 
     render() {
@@ -14,8 +13,8 @@ class SearchScreen extends Component {
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={styles.layout}>
                     <View style={styles.searchContainer}>
-                        <Icon name="ios-search" size={35} style={styles.searchIcon}/>
-                        <TextInput placeholder="Find A Philo" style={styles.searchText}></TextInput>
+                        <Icon name="ios-search" size={25} style={styles.searchIcon}/>
+                        <TextInput placeholder="Find Your Philos" style={styles.searchText}></TextInput>
                     </View>
                 </View>
             </SafeAreaView>
@@ -35,9 +34,9 @@ const styles = StyleSheet.create({
         height: 40,
         borderColor: "grey",
         borderWidth: 1,
-        marginTop: 30,
+        marginTop: 20,
         flexDirection: "row",
-        alignItems: "flex-start"
+        alignItems: "center"
     },
 
     searchIcon: {
@@ -46,9 +45,9 @@ const styles = StyleSheet.create({
     },
 
     searchText: {
-        fontSize: 18,
-        paddingTop: 5,
-        marginLeft: 10
+        fontSize: 15,
+        marginLeft: 10,
+        paddingTop: 10
     }
 
 });

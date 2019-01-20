@@ -94,7 +94,7 @@ class ProfileScreen extends Component {
                             </View>
                         </TouchableWithoutFeedback>
                         <Text style={styles.bottomText}>Bookmarked</Text>
-                        <Text style={styles.bottomText}>Categories</Text>
+                        <Text style={styles.bottomText}>Your Categories</Text>
                     </View>
 
                     {this.getCardArray()}

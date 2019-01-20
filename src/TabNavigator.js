@@ -1,7 +1,7 @@
 import ProfileStackNavigator from './Screens/Profile/ProfileStackNavigator';
-import FeedScreen from './Screens/Feed/FeedScreen.js';
-import SearchScreen from './Screens/Search/SearchScreen';
-import ActivityScreen from './Screens/Activity/ActivityScreen';
+import FeedStackNavigator from './Screens/Feed/FeedStackNavigator';
+import SearchStackNavigator from './Screens/Search/SearchStackNavigator';
+import ActivityStackNavigator from './Screens/Activity/ActivityStackNavigator';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 
@@ -13,26 +13,26 @@ class ProfileStack extends Component<Props> {
         return <ProfileStackNavigator />
     }
 }
-class Feed extends Component<Props> {
+class FeedStack extends Component<Props> {
     render() {
-        return <FeedScreen />
+        return <FeedStackNavigator />
     }
 }
-class Search extends Component<Props> {
+class SearchStack extends Component<Props> {
     render() {
-        return <SearchScreen />
+        return <SearchStackNavigator />
     }
 }
 
-class Activity extends Component<Props> {
+class ActivityStack extends Component<Props> {
     render() {
-        return <ActivityScreen />
+        return <ActivityStackNavigator />
     }
 }
 
 const TabNavigator = createBottomTabNavigator({
     Feed: {
-        screen: Feed,
+        screen: FeedStack,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
                 <FeatherIcon name='home' color={tintColor} size={32} style={{marginTop: 8}}/>
@@ -40,7 +40,7 @@ const TabNavigator = createBottomTabNavigator({
         }
     },
     Search: {
-        screen: Search,
+        screen: SearchStack,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
                 <FeatherIcon name='search' color={tintColor} size={32} style={{marginTop: 8}}/>
@@ -48,7 +48,7 @@ const TabNavigator = createBottomTabNavigator({
         }
     },
     Activity: {
-        screen: Activity,
+        screen: ActivityStack,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
                 <FeatherIcon name='inbox' color={tintColor} size={32} style={{marginTop: 8}}/>

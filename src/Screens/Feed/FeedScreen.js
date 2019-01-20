@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {View, Text, ScrollView, StyleSheet, SafeAreaView, ActivityIndicator} from "react-native";
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/Ionicons';
-import CardComponent from './CardComponent';
+import CardComponent from '../../Components/CardComponent';
+import helpers from '../../Services/QuoteAPI';
 
 class FeedScreen extends Component {
 
@@ -17,23 +18,12 @@ class FeedScreen extends Component {
         }
     }
 
-    componentDidMount(){
-        fetch("https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=10", header = {
-            headers: {
-                'X-Mashape-Key': 'LkFW0i7YOvmshxY4qtCZ1tj8ZpRkp1sozU6jsnvG7rkx7gS2iX',
-                'Accept': 'application/json'
-            }
-        })
-            .then((response) => response.json()
-                .then((responseJSON) => {
-                        this.setState({
-                            quoteArray: responseJSON,
-                            isLoading: false
-                        });
-                    }
-                )
-            )
-            .catch((err) => console.log(err));
+    async componentDidMount(){
+        let arr = await helpers.API();
+        this.setState({
+            quoteArray: arr,
+            isLoading: false
+        });
     }
 
     getCardArray(){
@@ -49,7 +39,7 @@ class FeedScreen extends Component {
         if(this.state.isLoading){
             return(
                 <View style={{display: "flex", alignItems: "center"}}>
-                    <Text>Loading</Text>
+                    <ActivityIndicator/>
                 </View>
             )
         }
@@ -77,19 +67,19 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 30,
-            color: "#ffcd5e",
-            fontFamily: "Helvetica Neue",
-            paddingTop: 5
+        color: "#ffcd5e",
+        fontFamily: "Helvetica Neue",
+        paddingTop: 5
     },
     navbar: {
-            width: 100 + "%",
-            height: 60,
-            display: "flex",
-            flexDirection: "row",
-            borderBottomWidth: StyleSheet.hairlineWidth,
-            borderBottomColor: "grey",
-            alignItems: "baseline",
-            justifyContent: "space-between"
+        width: 100 + "%",
+        height: 50,
+        display: "flex",
+        flexDirection: "row",
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomColor: "grey",
+        alignItems: "baseline",
+        justifyContent: "space-between"
     },
     settingsIcon: {
         marginLeft: 10

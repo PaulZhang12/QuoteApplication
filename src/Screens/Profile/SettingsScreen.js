@@ -1,19 +1,30 @@
 import React, {Component} from 'react';
-import {SafeAreaView} from "react-native";
+import {SafeAreaView, StyleSheet} from "react-native";
 
 
 class SettingsScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {text: ""};
     }
 
     render() {
         return (
-            <SafeAreaView style={{ flex: 1 }} />
+            <SafeAreaView>
+
+            </SafeAreaView>
         )
     };
 }
+
+const styles = StyleSheet.create({
+
+    layout: {
+        display: "flex"
+    },
+    navbar: {
+
+    }
+});
 
 export default SettingsScreen;

@@ -1,7 +1,7 @@
-import ProfileStackNavigator from './ProfileStackNavigator';
-import FeedScreen from './FeedScreen.js';
-import SearchScreen from './SearchScreen';
-import ActivityScreen from './ActivityScreen';
+import ProfileStackNavigator from './Screens/Profile/ProfileStackNavigator';
+import FeedScreen from './Screens/Feed/FeedScreen.js';
+import SearchScreen from './Screens/Search/SearchScreen';
+import ActivityScreen from './Screens/Activity/ActivityScreen';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 

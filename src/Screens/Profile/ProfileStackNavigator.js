@@ -4,21 +4,9 @@ import ProfileScreen from './ProfileScreen';
 import SettingsScreen from './SettingsScreen';
 
 
-class Main extends Component<Props> {
-    render() {
-        return <ProfileScreen />
-    }
-}
-
-class Settings extends Component<Props> {
-    render() {
-        return <SettingsScreen />
-    }
-}
-
 const ProfileStackNavigator = createStackNavigator({
-    Main: {screen: Main},
-    Settings: {screen: Settings}
+    Main: {screen: ProfileScreen},
+    Settings: {screen: SettingsScreen}
 }, {
     initialRouteName: 'Main',
     headerMode: 'none',

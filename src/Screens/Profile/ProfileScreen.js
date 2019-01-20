@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image, ScrollView, TouchableHighlight, SafeAreaView} from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView, SafeAreaView, ActivityIndicator, TouchableWithoutFeedback} from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Button} from 'native-base';
+import CardComponent from '../../Components/CardComponent';
+import helpers from "../../Services/QuoteAPI";
 
 class ProfileScreen extends Component {
 
@@ -12,20 +14,52 @@ class ProfileScreen extends Component {
             profilePic:  "https://twistedsifter.files.wordpress.com/2016/04/lukas-furlan-exploring-dolomites-self-portrait-skywalker.jpg",
             followers: 205,
             stories: 10,
-            upvotes: 355
+            upvotes: 355,
+            isLoading: true,
+            philo: "Hello my name is Paul"
         };
     }
 
+    pressSettings(){
+        this.props.navigation.navigate('Settings');
+    }
+    async componentDidMount(){
+        let arr = await helpers.API();
+        this.setState({
+            quoteArray: arr,
+            isLoading: false
+        });
+    }
+
+    getCardArray(){
+        let CardArray = [];
+        this.state.quoteArray.map(quoteObject => {
+          CardArray.push(<CardComponent quote={quoteObject.quote} author={quoteObject.author} beginningText={this.state.philo.substring(0,200) + "..."}/>);
+        });
+        return CardArray;
+    }
+
+    onPressQuote(){
+
+    }
+
     render() {
+        if(this.state.isLoading){
+            return(
+                <View style={{display: "flex", alignItems: "center"}}>
+                    <ActivityIndicator/>
+                </View>
+            )
+        }
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <ScrollView style={styles.layout}>
                     <View style={styles.navbar}>
-                        <Button transparent rounded onPress={() => this.props.navigation.navigate('Settings')}>
+                        <Button transparent rounded onPress={() => this.pressSettings()} style={{marginTop: 5}}>
                         <Icon name="ios-cog" size={35} color="grey" style={styles.settingsIcon}/>
                         </Button>
                         <Text style={styles.title}>Paul Zhang</Text>
-                        <Button transparent rounded>
+                        <Button transparent rounded style={{marginTop: 5}}>
                         <Icon name="ios-send" size={35} color="grey" style={styles.sendIcon}/>
                         </Button>
                     </View>
@@ -53,15 +87,17 @@ class ProfileScreen extends Component {
                     </View>
                     <View style={styles.bottomNavbar}>
 
-                        <TouchableHighlight
+                        <TouchableWithoutFeedback
                             onPress = {this.onPressQuote}>
                             <View>
                                 <Text style={styles.bottomText}>Your Quotes</Text>
                             </View>
-                        </TouchableHighlight>
+                        </TouchableWithoutFeedback>
                         <Text style={styles.bottomText}>Bookmarked</Text>
                         <Text style={styles.bottomText}>Categories</Text>
                     </View>
+
+                    {this.getCardArray()}
                 </ScrollView>
             </SafeAreaView>
         )
@@ -80,7 +116,8 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         color: "#ffcd5e",
-        fontFamily: "Helvetica Neue"
+        fontFamily: "Helvetica Neue",
+        paddingTop: 5
     },
     navbar: {
         width: 100 + "%",
@@ -94,11 +131,11 @@ const styles = StyleSheet.create({
     },
     settingsIcon: {
         color: "black",
-        marginLeft: 5
+        marginLeft: 10
     },
     sendIcon:{
         color: "black",
-        marginRight: 5
+        marginRight: 10
     },
     profileIcon: {
         flex: 1,
@@ -109,8 +146,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         alignItems: "flex-end",
-        justifyContent: "center",
-        paddingBottom: 10
+        justifyContent: "center"
     },
     stats: {
         display: "flex",

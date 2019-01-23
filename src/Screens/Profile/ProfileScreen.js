@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image, ScrollView, SafeAreaView, ActivityIndicator, TouchableWithoutFeedback} from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView, SafeAreaView, ActivityIndicator, TouchableOpacity} from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
+import FeatherIcon from 'react-native-vector-icons/Feather';
 import {Button} from 'native-base';
 import CardComponent from '../../Components/CardComponent';
 import helpers from "../../Services/QuoteAPI";
@@ -18,29 +19,89 @@ class ProfileScreen extends Component {
             isLoading: true,
             philo: "Hello my name is Paul"
         };
+
+        this.onPressQuote = this.onPressQuote.bind(this);
+        this.onPressBookmark = this.onPressBookmark.bind(this);
+        this.onPressCategories = this.onPressCategories.bind(this);
+
+
     }
 
     pressSettings(){
         this.props.navigation.navigate('Settings');
     }
+
     async componentDidMount(){
         let arr = await helpers.API();
         this.setState({
-            quoteArray: arr,
-            isLoading: false
+            quoteArray: this.getCardArray(arr),
+            isLoading: false,
+            tab: "Your Quote"
         });
     }
 
-    getCardArray(){
+    getCardArray(PhilosArray){
         let CardArray = [];
-        this.state.quoteArray.map(quoteObject => {
+        PhilosArray.map(quoteObject => {
           CardArray.push(<CardComponent quote={quoteObject.quote} author={quoteObject.author} beginningText={this.state.philo.substring(0,200) + "..."}/>);
         });
         return CardArray;
     }
 
     onPressQuote(){
+        this.setState({tab: "Your Quote"});
+        this.quoteText.setNativeProps({style: {
+                color: '#3EC094'
+            }});
+        this.bookmarkText.setNativeProps({style: {
+                color: 'black'
+            }});
+        this.categoriesText.setNativeProps({style: {
+                color: 'black'
+            }});
 
+    }
+
+    onPressBookmark(){
+        this.setState({tab: "Bookmarked"});
+        this.quoteText.setNativeProps({style: {
+            color: 'black'
+            }});
+        this.bookmarkText.setNativeProps({style: {
+            color: '#3EC094'
+            }});
+        this.categoriesText.setNativeProps({style: {
+            color: 'black'
+            }});
+    }
+
+    onPressCategories(){
+        this.setState({tab: "Categories"});
+        this.quoteText.setNativeProps({style: {
+                color: 'black'
+            }});
+        this.bookmarkText.setNativeProps({style: {
+                color: 'black'
+            }});
+        this.categoriesText.setNativeProps({style: {
+                color: '#3EC094'
+            }});
+    }
+
+    handleProfileView(){
+        switch(this.state.tab){
+            case "Your Quote":
+                return this.state.quoteArray.slice(0, 5);
+            case "Bookmarked":
+                return this.state.quoteArray.slice(5,10);
+            case "Categories":
+                return <Image style={styles.profileIcon}
+                       source ={{
+                           uri:
+                           this.state.profilePic
+                       }}
+                       resizeMode="cover"/>
+        }
     }
 
     render() {
@@ -56,11 +117,11 @@ class ProfileScreen extends Component {
                 <ScrollView style={styles.layout}>
                     <View style={styles.navbar}>
                         <Button transparent rounded onPress={() => this.pressSettings()} style={{marginTop: 5}}>
-                        <Icon name="ios-cog" size={35} color="grey" style={styles.settingsIcon}/>
+                        <Icon name="ios-cog" size={35} style={styles.settingsIcon}/>
                         </Button>
                         <Text style={styles.title}>Paul Zhang</Text>
                         <Button transparent rounded style={{marginTop: 5}}>
-                        <Icon name="ios-send" size={35} color="grey" style={styles.sendIcon}/>
+                        <FeatherIcon name="edit" size={35} style={styles.editIcon}/>
                         </Button>
                     </View>
                     <View style={styles.stats}>
@@ -87,17 +148,21 @@ class ProfileScreen extends Component {
                     </View>
                     <View style={styles.bottomNavbar}>
 
-                        <TouchableWithoutFeedback
+                        <TouchableOpacity
                             onPress = {this.onPressQuote}>
-                            <View>
-                                <Text style={styles.bottomText}>Your Quotes</Text>
-                            </View>
-                        </TouchableWithoutFeedback>
-                        <Text style={styles.bottomText}>Bookmarked</Text>
-                        <Text style={styles.bottomText}>Your Categories</Text>
+                            <Text ref={component => this.quoteText = component} style={styles.bottomText, {color: '#3EC094'}}>Your Quotes</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress = {this.onPressBookmark}>
+                            <Text ref={component => this.bookmarkText = component} style={styles.bottomText}>Bookmarked</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress = {this.onPressCategories}>
+                            <Text ref={component => this.categoriesText = component} style={styles.bottomText}>Your Categories</Text>
+                        </TouchableOpacity>
                     </View>
 
-                    {this.getCardArray()}
+                    {this.handleProfileView()}
                 </ScrollView>
             </SafeAreaView>
         )
@@ -133,7 +198,7 @@ const styles = StyleSheet.create({
         color: "black",
         marginLeft: 10
     },
-    sendIcon:{
+    editIcon:{
         color: "black",
         marginRight: 10
     },

@@ -6,7 +6,35 @@ import {Button} from 'native-base';
 import CardComponent from '../../Components/CardComponent';
 import helpers from "../../Services/QuoteAPI";
 
+class ProfileTitle extends Component{
+    render(){
+        return(
+          <View>
+              <Text style={styles.title}>Paul Zhang</Text>
+          </View>
+        );
+    }
+}
+
+
 class ProfileScreen extends Component {
+
+    static navigationOptions = ({navigation}) => {
+        return {
+            headerTitle: <ProfileTitle/>,
+            headerRight: (
+                <Button transparent rounded onPress={() => navigation.navigate('createPhilo')} style={{alignSelf: "center", marginRight: 10}}>
+                    <FeatherIcon name="edit" size={35} color="black"/>
+                </Button>
+            ),
+            headerLeft: (
+                <Button transparent rounded onPress={() => navigation.navigate('Settings')} style={{alignSelf: "center", marginLeft: 10}}>
+                    <Icon name="ios-cog" size={35} color="black"/>
+                </Button>
+            )
+
+        };
+    };
 
     constructor(props) {
         super(props);
@@ -38,6 +66,7 @@ class ProfileScreen extends Component {
             isLoading: false,
             tab: "Your Quote"
         });
+        this.props.navigation.setParams({ Name: this.state.name });
     }
 
     getCardArray(PhilosArray){
@@ -115,15 +144,6 @@ class ProfileScreen extends Component {
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <ScrollView style={styles.layout}>
-                    <View style={styles.navbar}>
-                        <Button transparent rounded onPress={() => this.pressSettings()} style={{marginTop: 5}}>
-                        <Icon name="ios-cog" size={35} style={styles.settingsIcon}/>
-                        </Button>
-                        <Text style={styles.title}>Paul Zhang</Text>
-                        <Button transparent rounded style={{marginTop: 5}}>
-                        <FeatherIcon name="edit" size={35} style={styles.editIcon}/>
-                        </Button>
-                    </View>
                     <View style={styles.stats}>
                         <View style={styles.indStats}>
                             <Text style={styles.statText}>Followers</Text>
@@ -182,7 +202,8 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: "#ffcd5e",
         fontFamily: "Helvetica Neue",
-        paddingTop: 5
+        paddingBottom: 5,
+        fontWeight: "normal"
     },
     navbar: {
         width: 100 + "%",
@@ -197,10 +218,6 @@ const styles = StyleSheet.create({
     settingsIcon: {
         color: "black",
         marginLeft: 10
-    },
-    editIcon:{
-        color: "black",
-        marginRight: 10
     },
     profileIcon: {
         flex: 1,

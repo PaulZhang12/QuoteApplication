@@ -10,11 +10,14 @@ class SearchScreen extends Component {
 
     render() {
         return (
-            <SafeAreaView style={{ flex: 1 }}>
+            <SafeAreaView>
                 <View style={styles.layout}>
                     <View style={styles.searchContainer}>
                         <Icon name="ios-search" size={25} style={styles.searchIcon}/>
                         <TextInput placeholder="Find Your Philos" style={styles.searchText}></TextInput>
+                    </View>
+                    <View style={styles.categoriesView}>
+                        <Text style={styles.categoriesText}>Categories</Text>
                     </View>
                 </View>
             </SafeAreaView>
@@ -33,7 +36,7 @@ const styles = StyleSheet.create({
         width: 90+"%",
         height: 40,
         borderColor: "grey",
-        borderWidth: 1,
+        borderWidth: StyleSheet.hairlineWidth,
         marginTop: 20,
         flexDirection: "row",
         alignItems: "center"
@@ -48,6 +51,17 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginLeft: 10,
         paddingTop: 10
+    },
+    categoriesView: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        width: 90+"%",
+        height: 200
+    },
+    categoriesText: {
+        color: "black",
+        fontSize: 30
     }
 
 });

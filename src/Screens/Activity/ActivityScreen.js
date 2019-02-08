@@ -5,16 +5,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 class ActivityScreen extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {text: ""};
-    }
-
     render() {
         return (
-            <SafeAreaView style={{ flex: 1 }} />
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                <Text>Hello world!</Text>
+            </View>
         )
     };
+
 }
 
 const styles = StyleSheet.create({

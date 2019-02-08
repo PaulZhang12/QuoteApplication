@@ -22,7 +22,8 @@ class FeedScreen extends Component {
         return {
             headerTitle: <PhiloTitle/>,
             headerRight: (
-                <Button transparent ="edit" size={35} color="black"/>
+                <Button transparent rounded onPress={() => navigation.navigate('createPhilo')} style={{alignSelf: "center", marginRight: 10}}>
+                        <FeatherIcon name="edit" size={35} color="black"/>
                 </Button>
             )
 

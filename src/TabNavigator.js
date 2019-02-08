@@ -30,6 +30,9 @@ class ActivityStack extends Component<Props> {
     }
 }
 
+
+
+
 const TabNavigator = createBottomTabNavigator({
     Feed: {
         screen: FeedStack,

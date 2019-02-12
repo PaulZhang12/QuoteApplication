@@ -52,7 +52,7 @@ class FeedScreen extends Component {
     getCardArray(PhilosArray){
         let CardArray = [];
         PhilosArray.map(quoteObject => {
-            CardArray.push(<CardComponent quote={quoteObject.quote} author={quoteObject.author} beginningText={this.state.philo.substring(0,200) + "..."}/>);
+            CardArray.push(<CardComponent quote={quoteObject.quote} author={quoteObject.author} beginningText={this.state.philo.substring(0,200) + "..."} perspectColor={"black"}/>);
         });
         return CardArray;
     }

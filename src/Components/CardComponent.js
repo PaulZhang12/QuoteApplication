@@ -10,20 +10,45 @@ class CardComponent extends Component{
 
     constructor(props){
         super(props);
-        this.onPressPerspect = this.onPressPerspect.bind(this);
+        this.onPressPerspect = this.onPressPerspect.bind(this);//this binding so the native props can change
+        this.state = {
+            perspectStatus: false,
+        }
     }
 
-    onPressPerspect(){
-        this.perspectIcon.setNativeProps({style: {
-                color: '#3EC094'
-            }});
-        this.perspectText.setNativeProps({style: {
-            color: '#3EC094'
-            }});
+    onPressPerspect(){ //change the colors after the action togglePerspect has been done
+        if(!this.state.perspectStatus) {
+            this.perspectIcon.setNativeProps({
+                style: {
+                    color: '#3EC094'
+                }
+            });
+            this.perspectText.setNativeProps({
+                style: {
+                    color: '#3EC094'
+                }
+            });
+            this.setState({perspectStatus: true})
+        }
+
+        else{
+            this.perspectIcon.setNativeProps({
+                style: {
+                    color: 'grey'
+                }
+            });
+            this.perspectText.setNativeProps({
+                style: {
+                    color: 'grey'
+                }
+            });
+            this.setState({perspectStatus: false})
+        }
+
+
     }
 
     render(){
-
         return (
             <Card>
                 <CardItem header bordered style={styles.card}>
@@ -47,7 +72,9 @@ class CardComponent extends Component{
                 <CardItem>
                     <Left>
                         <TouchableOpacity
-                        onPress = {this.onPressPerspect}
+                        onPress = {() => {
+                            this.onPressPerspect();
+                        }}
                         style={styles.body}>
                             <FontIcon ref = {component => this.perspectIcon = component} name={"hand-paper-o"} size={32} style={styles.icon}/>
                             <Text ref = {component => this.perspectText = component} style={styles.perspectText}>Perspect</Text>
@@ -86,4 +113,6 @@ const styles = StyleSheet.create({
         marginLeft: 5
     }
 });
+
+
 export default CardComponent;

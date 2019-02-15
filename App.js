@@ -7,14 +7,23 @@
  */
 
 import TabNavigator from './src/TabNavigator';
+import configureStore from './src/store';
+import {Provider} from 'react-redux';
 
 import React, {Component} from "react";
 
 class App extends Component {
 
+    constructor(props){
+        super(props);
+    }
+
     render(){
         return(
-            <TabNavigator></TabNavigator>
+            <Provider store={configureStore()}>
+                <TabNavigator>
+                </TabNavigator>
+            </Provider>
         )
     }
 

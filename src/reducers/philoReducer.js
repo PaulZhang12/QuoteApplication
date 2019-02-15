@@ -1,20 +1,18 @@
 import {ADD_PHILOS} from "../actions/types";
+import helpers from '../Services/QuoteAPI';
 
-const initialState = {
-    philoQuote: "Life is great",
-    philoStory: "I'm amazing",
-    philosRelated: []
-};
+async function getInitialState(){
+    return await helpers.API();
+}
+
+const initialState = getInitialState();
 
 const philosReducer = (state = initialState, action) => {
     switch(action.type){
         case ADD_PHILOS:
             return{
                 ...state,
-                philosRelated: state.philosRelated.concat({
-                    key: 1,
-                    value: action.payload
-                })
+                philos: action.payload
             };
         default:
             return state;

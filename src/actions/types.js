@@ -1,1 +1,2 @@
 export const ADD_PHILOS = 'ADD_PHILOS';
+export const TOGGLE_PERSPECT = 'TOGGLE_PERSPECT';

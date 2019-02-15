@@ -1,3 +1,4 @@
+
 const helpers = {
     API: async function getQuoteJson(){
         const quote = await fetch("https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=10", header = {
@@ -7,7 +8,7 @@ const helpers = {
             }
         });
 
-        const quoteJSON = await quote.json();
+        const quoteJSON = await quote.json(); //obtain the json file from fetch
         return Promise.resolve(quoteJSON);
 }};
 

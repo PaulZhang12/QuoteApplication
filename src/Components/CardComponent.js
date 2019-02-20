@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image} from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity} from "react-native";
 import FontIcon from 'react-native-vector-icons/FontAwesome';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import Ionicon from 'react-native-vector-icons/Ionicons';
@@ -8,11 +8,49 @@ import {Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon} from 'native
 
 class CardComponent extends Component{
 
+    constructor(props){
+        super(props);
+        this.onPressPerspect = this.onPressPerspect.bind(this);//this binding so the native props can change
+        this.state = {
+            perspectStatus: false,
+        }
+    }
+
+    onPressPerspect(){ //change the colors after the action togglePerspect has been done
+        if(!this.state.perspectStatus) {
+            this.perspectIcon.setNativeProps({
+                style: {
+                    color: '#3EC094'
+                }
+            });
+            this.perspectText.setNativeProps({
+                style: {
+                    color: '#3EC094'
+                }
+            });
+            this.setState({perspectStatus: true})
+        }
+
+        else{
+            this.perspectIcon.setNativeProps({
+                style: {
+                    color: 'grey'
+                }
+            });
+            this.perspectText.setNativeProps({
+                style: {
+                    color: 'grey'
+                }
+            });
+            this.setState({perspectStatus: false})
+        }
+
+
+    }
 
     render(){
-
         return (
-            <Card style={{borderColor: "#3EC094"}}>
+            <Card>
                 <CardItem header bordered style={styles.card}>
                     <Left>
                         <Thumbnail source={{
@@ -32,11 +70,18 @@ class CardComponent extends Component{
                     </Body>
                 </CardItem>
                 <CardItem>
-                    <Left style={styles.body}>
-                        <FontIcon name={"hand-paper-o"} size={30} style={styles.icon}/>
-                        <FeatherIcon name={"bookmark"} size={30} style={styles.icon}/>
+                    <Left>
+                        <TouchableOpacity
+                        onPress = {() => {
+                            this.onPressPerspect();
+                        }}
+                        style={styles.body}>
+                            <FontIcon ref = {component => this.perspectIcon = component} name={"hand-paper-o"} size={32} style={styles.icon}/>
+                            <Text ref = {component => this.perspectText = component} style={styles.perspectText}>Perspect</Text>
+                        </TouchableOpacity>
                     </Left>
-                    <Right>
+                    <Right style={{display: "flex", flexDirection: "row", justifyContent: "flex-end"}}>
+                        <FeatherIcon name={"bookmark"} size={32} style={styles.icon}/>
                         <Ionicon name={"md-book"} size={32} style={styles.icon}/>
                     </Right>
                 </CardItem>
@@ -57,10 +102,17 @@ const styles = StyleSheet.create({
     },
     body: {
         display: "flex",
-        flexDirection: "row"
+        flexDirection: "row",
+        alignItems: "center"
     },
     icon: {
         marginHorizontal: 5
+    },
+    perspectText: {
+        fontSize: 16,
+        marginLeft: 5
     }
 });
+
+
 export default CardComponent;

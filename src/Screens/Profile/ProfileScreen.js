@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image, ScrollView, SafeAreaView, ActivityIndicator, TouchableOpacity} from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView, SafeAreaView, ActivityIndicator, TouchableWithoutFeedback} from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import {Button} from 'native-base';
@@ -72,7 +72,7 @@ class ProfileScreen extends Component {
     getCardArray(PhilosArray){
         let CardArray = [];
         PhilosArray.map(quoteObject => {
-          CardArray.push(<CardComponent quote={quoteObject.quote} author={quoteObject.author} beginningText={this.state.philo.substring(0,200) + "..."}/>);
+          CardArray.push(<CardComponent quote={quoteObject.quote} author={quoteObject.author} beginningText={this.state.philo.substring(0,200) + "..."} perspectColor={"green"}/>);
         });
         return CardArray;
     }
@@ -168,18 +168,18 @@ class ProfileScreen extends Component {
                     </View>
                     <View style={styles.bottomNavbar}>
 
-                        <TouchableOpacity
+                        <TouchableWithoutFeedback
                             onPress = {this.onPressQuote}>
-                            <Text ref={component => this.quoteText = component} style={styles.bottomText, {color: '#3EC094'}}>Your Quotes</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                            <Text ref={component => this.quoteText = component} style={[styles.bottomText, {color: '#3EC094'}]}>Your Quotes</Text>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback
                             onPress = {this.onPressBookmark}>
                             <Text ref={component => this.bookmarkText = component} style={styles.bottomText}>Bookmarked</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback
                             onPress = {this.onPressCategories}>
                             <Text ref={component => this.categoriesText = component} style={styles.bottomText}>Your Categories</Text>
-                        </TouchableOpacity>
+                        </TouchableWithoutFeedback>
                     </View>
 
                     {this.handleProfileView()}
@@ -243,18 +243,18 @@ const styles = StyleSheet.create({
     },
     statText: {
         fontFamily: "Helvetica Neue",
-        fontWeight: "600",
+        fontWeight: "300",
         fontSize: 15,
         color: "black"
     },
     bottomNavbar: {
         flex: 1,
         width: 100+"%",
-        height: 30,
+        height: 40,
         justifyContent: "space-evenly",
         flexDirection: "row",
         alignItems: "center",
-        backgroundColor: "#D3D3D3"
+        borderWidth: StyleSheet.hairlineWidth
     },
     bottomText: {
         fontFamily: "Helvetica Neue",

@@ -1,22 +1,24 @@
-import {ADD_PHILOS} from "../actions/types";
-import helpers from '../Services/QuoteAPI';
+import {LOAD_PHILOS_SUCCESS, LOAD_PHILOS_START, LOAD_PHILOS_FAIL} from "../actions/types";
 
-async function getInitialState(){
-    return await helpers.API();
-}
+const initialState = {};
 
-const initialState = getInitialState();
-
-const philosReducer = (state = initialState, action) => {
+export default philosReducer = (state = initialState, action) => {
     switch(action.type){
-        case ADD_PHILOS:
+        case LOAD_PHILOS_START:
             return{
-                ...state,
-                philos: action.payload
+                isLoading: true
+            };
+
+        case LOAD_PHILOS_SUCCESS:
+            return{
+                ...state, philos: action.payload, isLoading: false
+            };
+
+        case LOAD_PHILOS_FAIL:
+            return{
+                ...state, error: action.error
             };
         default:
             return state;
     }
 };
-
-export default philosReducer;

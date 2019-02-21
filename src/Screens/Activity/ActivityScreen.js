@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, TextInput, SafeAreaView} from "react-native";
-import Icon from 'react-native-vector-icons/Ionicons';
 
 
 class ActivityScreen extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                <Text>Hello world!</Text>
+            <View style={styles.view}>
+                <Text>Hello World</Text>
             </View>
         )
     };
@@ -16,7 +15,11 @@ class ActivityScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+    view: {
+        backgroundColor: 'blue',
+        height: 100+'%',
 
+    }
 
 });
 

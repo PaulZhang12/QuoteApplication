@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Text, Image, TextInput, SafeAreaView} from "react-native";
+import { StyleSheet, View, Text, Image, TextInput, SafeAreaView, ScrollView} from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
 class SearchScreen extends Component {

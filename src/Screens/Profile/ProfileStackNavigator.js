@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
 import ProfileScreen from './ProfileScreen';
 import SettingsScreen from './SettingsScreen';
-import createPhilo from '../Feed/CreatePhiloScreen';
+import createPhilo from '../Feed/createPhiloModal';
 
 
 const ProfileStackNavigator = createStackNavigator({

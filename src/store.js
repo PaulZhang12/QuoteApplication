@@ -1,15 +1,11 @@
 
-import { createStore, combineReducers} from 'redux';
-import philosReducer from './reducers/philoReducer';
-import perspectReducer from './reducers/perspectReducer';
+import { createStore, applyMiddleware} from 'redux';
+import philoReducer from './reducers/philoReducer';
+import thunk from 'redux-thunk';
 
-const rootReducer = combineReducers({
-   philos: philosReducer,
-   perspect: perspectReducer
-});
 
 const configureStore = () => {
-    return createStore(rootReducer);
+    return createStore(philoReducer, applyMiddleware(thunk));
 };
 
 export default configureStore;

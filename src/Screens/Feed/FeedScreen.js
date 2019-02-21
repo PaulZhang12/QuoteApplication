@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import {View, Text, ScrollView, StyleSheet, SafeAreaView, ActivityIndicator} from "react-native";
 import FeatherIcon from 'react-native-vector-icons/Feather';
-import Icon from 'react-native-vector-icons/Ionicons';
 import CardComponent from '../../Components/CardComponent';
 import {Button} from 'native-base';
-import helpers from '../../Services/QuoteAPI';
+import {loadFeedPhilos} from '../../Services/QuoteAPI';
 import {connect} from 'react-redux';
+import PhilosModal from './createPhiloModal';
 
 class PhiloTitle extends Component{
     render(){
@@ -20,53 +20,50 @@ class PhiloTitle extends Component{
 class FeedScreen extends Component {
 
     static navigationOptions = ({navigation}) => {
+        const showParams = navigation.getParam("show", () => {});
         return {
             headerTitle: <PhiloTitle/>,
             headerRight: (
-                <Button transparent rounded onPress={() => navigation.navigate('createPhilo')} style={{alignSelf: "center", marginRight: 10}}>
-                        <FeatherIcon name="edit" size={35} color="black"/>
+                <Button transparent rounded onPress={showParams} style={{alignSelf: "center", marginRight: 10}}>
+                        <FeatherIcon name="edit" size={30} color="black"/>
                 </Button>
             )
         };
     };
 
-
-    constructor(props){
-        super(props);
-        this.state = {
-            isLoading: true
-        };
+    _show(){
+        this.setState({modalVisible: true});
     }
 
-    async componentDidMount(){
-        const arr = await helpers.API();
-        this.setState({
-            quoteArray: this.getCardArray(arr),
-            isLoading: false
-        });
+    constructor(props) {
+        super(props);
+        this.state = {
+            modalVisible: false
+        };
+        this.props.navigation.setParams({show:() => this._show()})
+    }
+
+    componentDidMount(){
+        this.props.loadPhilos();
     }
 
     getCardArray(PhilosArray){
         let CardArray = [];
         PhilosArray.map(quoteObject => {
-            CardArray.push(<CardComponent quote={quoteObject.quote} author={quoteObject.author} beginningText={"My name is Paul"}/>);
+            CardArray.push(<CardComponent quote={quoteObject.quote} author={quoteObject.author}
+                                          beginningText={"My name is Paul"}/>);
         });
         return CardArray;
     }
 
 
     render() {
-        if(this.state.isLoading){
-            return(
-                <View style={{display: "flex", alignItems: "center"}}>
-                    <ActivityIndicator/>
-                </View>
-            )
-        }
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <ScrollView>
-                    {this.state.quoteArray}
+                    {   this.state.modalVisible ? <PhilosModal visible={true}/> :
+                        (this.props.philos.isLoading || this.props.philos.isLoading==null) ? <ActivityIndicator/> : this.getCardArray(this.props.philos.philos)
+                    }
                 </ScrollView>
             </SafeAreaView>
         )
@@ -86,6 +83,14 @@ const styles = StyleSheet.create({
     }
 });
 
+const mapStateToProps = (state) => {
+    return {philos: state};
+};
 
+const mapDispatchToProps = dispatch => {
+    return {
+        loadPhilos: () => dispatch(loadFeedPhilos())
+    }
+};
 
-export default FeedScreen;
+export default connect(mapStateToProps, mapDispatchToProps)(FeedScreen);

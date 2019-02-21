@@ -1,24 +1,30 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Text, Image, TextInput, SafeAreaView} from "react-native";
+import { StyleSheet, View, Text, Image, TextInput, SafeAreaView, Button} from "react-native";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 class ActivityScreen extends Component {
 
     render() {
-        return (
+        return  (
             <View style={styles.view}>
-                <Text>Hello World</Text>
+                <Button title={"hello world?"} onPress={()=>alert("chungus")}>
+                </Button>
             </View>
         )
-    };
+    }
 
 }
 
 const styles = StyleSheet.create({
     view: {
-        backgroundColor: 'blue',
-        height: 100+'%',
+        backgroundColor: "green",
+        height: 30+"%",
+        width: 50+"%",
 
+    },
+    text: {
+        color: "red",
     }
 
 });

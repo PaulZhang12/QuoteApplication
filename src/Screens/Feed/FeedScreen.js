@@ -5,7 +5,6 @@ import CardComponent from '../../Components/CardComponent';
 import {Button} from 'native-base';
 import {loadFeedPhilos} from '../../Services/QuoteAPI';
 import {connect} from 'react-redux';
-import PhilosModal from './createPhiloModal';
 
 class PhiloTitle extends Component{
     render(){
@@ -20,27 +19,21 @@ class PhiloTitle extends Component{
 class FeedScreen extends Component {
 
     static navigationOptions = ({navigation}) => {
-        const showParams = navigation.getParam("show", () => {});
         return {
             headerTitle: <PhiloTitle/>,
             headerRight: (
-                <Button transparent rounded onPress={showParams} style={{alignSelf: "center", marginRight: 10}}>
+                <Button transparent rounded onPress={() => navigation.navigate("createPhiloModal")} style={{alignSelf: "center", marginRight: 10}}>
                         <FeatherIcon name="edit" size={30} color="black"/>
                 </Button>
             )
         };
     };
 
-    _show(){
-        this.setState({modalVisible: true});
-    }
-
     constructor(props) {
         super(props);
         this.state = {
             modalVisible: false
         };
-        this.props.navigation.setParams({show:() => this._show()})
     }
 
     componentDidMount(){
@@ -59,11 +52,9 @@ class FeedScreen extends Component {
 
     render() {
         return (
-            <SafeAreaView style={{ flex: 1 }}>
+            <SafeAreaView style={styles.layout}>
                 <ScrollView>
-                    {   this.state.modalVisible ? <PhilosModal visible={true}/> :
-                        (this.props.philos.isLoading || this.props.philos.isLoading==null) ? <ActivityIndicator/> : this.getCardArray(this.props.philos.philos)
-                    }
+                    {(this.props.philos.isLoading || this.props.philos.isLoading==null) ? <ActivityIndicator/> : this.getCardArray(this.props.philos.philos)}
                 </ScrollView>
             </SafeAreaView>
         )
@@ -72,7 +63,10 @@ class FeedScreen extends Component {
 
 const styles = StyleSheet.create({
     layout: {
-        display: "flex"
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "white",
     },
     title: {
         fontSize: 30,

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image, ScrollView, SafeAreaView, ActivityIndicator, TouchableWithoutFeedback} from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView, SafeAreaView, TouchableWithoutFeedback} from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import {Button} from 'native-base';
 import CardComponent from '../../Components/CardComponent';
-import helpers from "../../Services/QuoteAPI";
+import {loadFeedPhilos} from "../../Services/QuoteAPI";
+import {connect} from 'react-redux';
 
 class ProfileTitle extends Component{
     render(){
@@ -24,12 +25,12 @@ class ProfileScreen extends Component {
             headerTitle: <ProfileTitle/>,
             headerRight: (
                 <Button transparent rounded onPress={() => navigation.navigate('createPhilo')} style={{alignSelf: "center", marginRight: 10}}>
-                    <FeatherIcon name="edit" size={35} color="black"/>
+                    <FeatherIcon name="edit" size={30} color="black"/>
                 </Button>
             ),
             headerLeft: (
                 <Button transparent rounded onPress={() => navigation.navigate('Settings')} style={{alignSelf: "center", marginLeft: 10}}>
-                    <Icon name="ios-cog" size={35} color="black"/>
+                    <Icon name="ios-cog" size={30} color="black"/>
                 </Button>
             )
 
@@ -44,8 +45,10 @@ class ProfileScreen extends Component {
             followers: 205,
             stories: 10,
             upvotes: 355,
-            isLoading: true,
-            philo: "Hello my name is Paul"
+            philo: "Hello my name is Paul",
+            refreshing: true,
+            philoArray: [],
+            tab: 'Your Quote'
         };
 
         this.onPressQuote = this.onPressQuote.bind(this);
@@ -55,27 +58,30 @@ class ProfileScreen extends Component {
 
     }
 
-    pressSettings(){
-        this.props.navigation.navigate('Settings');
+    componentDidMount(){
+        this.props.loadPhilos();
     }
 
-    async componentDidMount(){
-        let arr = await helpers.API();
-        this.setState({
-            quoteArray: this.getCardArray(arr),
-            isLoading: false,
-            tab: "Your Quote"
-        });
-        this.props.navigation.setParams({ Name: this.state.name });
+    componentDidUpdate(prevProps){
+        if(prevProps.philos != this.props.philos)
+            this.onRefresh();
     }
 
     getCardArray(PhilosArray){
         let CardArray = [];
         PhilosArray.map(quoteObject => {
-          CardArray.push(<CardComponent quote={quoteObject.quote} author={quoteObject.author} beginningText={this.state.philo.substring(0,200) + "..."} perspectColor={"green"}/>);
+            CardArray.push(<CardComponent quote={quoteObject.quote} author={quoteObject.author}
+                                          beginningText={(quoteObject.beginningText != null) ? quoteObject.beginningText: "My name is Paul"}/>);
         });
-        return CardArray;
+        this.setState({philoArray: CardArray});
     }
+
+    onRefresh = () => {
+        this.setState({refreshing: true});
+        (this.props.philos.isLoading || this.props.philos.isLoading==null) ? null : this.getCardArray(this.props.philos.philos);
+        this.setState({refreshing: false});
+    };
+
 
     onPressQuote(){
         this.setState({tab: "Your Quote"});
@@ -120,9 +126,9 @@ class ProfileScreen extends Component {
     handleProfileView(){
         switch(this.state.tab){
             case "Your Quote":
-                return this.state.quoteArray.slice(0, 5);
+                return this.state.philoArray.slice(0, 5);
             case "Bookmarked":
-                return this.state.quoteArray.slice(5,10);
+                return this.state.philoArray.slice(5);
             case "Categories":
                 return <Image style={styles.profileIcon}
                        source ={{
@@ -134,13 +140,6 @@ class ProfileScreen extends Component {
     }
 
     render() {
-        if(this.state.isLoading){
-            return(
-                <View style={{display: "flex", alignItems: "center"}}>
-                    <ActivityIndicator/>
-                </View>
-            )
-        }
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <ScrollView style={styles.layout}>
@@ -263,4 +262,14 @@ const styles = StyleSheet.create({
 
 });
 
-export default ProfileScreen;
+const mapStateToProps = (state) => {
+    return {philos: state};
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        loadPhilos: () => dispatch(loadFeedPhilos())
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);

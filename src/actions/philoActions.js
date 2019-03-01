@@ -1,4 +1,4 @@
-import {LOAD_PHILOS_FAIL, LOAD_PHILOS_START, LOAD_PHILOS_SUCCESS} from "./types";
+import {LOAD_PHILOS_FAIL, LOAD_PHILOS_START, LOAD_PHILOS_SUCCESS, ADD_PHILOS} from "./types";
 
 
 export const loadPhilos = () => {
@@ -21,4 +21,11 @@ export const errorPhilos = (error) => {
         error: error
 
     }
+};
+
+export const addPhilos = (philo) => {
+        return {
+            type: ADD_PHILOS,
+            payload: philo
+        }
 };

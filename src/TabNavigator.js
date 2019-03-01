@@ -4,7 +4,6 @@ import SearchStackNavigator from './Screens/Search/SearchStackNavigator';
 import ActivityStackNavigator from './Screens/Activity/ActivityStackNavigator';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
-import createPhiloModal from './Screens/Feed/createPhiloModal'
 
 import {createAppContainer, createBottomTabNavigator} from 'react-navigation';
 import React, {Component} from "react";

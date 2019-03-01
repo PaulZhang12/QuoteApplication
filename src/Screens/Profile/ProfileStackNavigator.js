@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
 import ProfileScreen from './ProfileScreen';
 import SettingsScreen from './SettingsScreen';
@@ -14,5 +14,13 @@ const ProfileStackNavigator = createStackNavigator({
     headerLayoutPreset: "center"
 });
 
+const ModalStack = createStackNavigator({
+    ProfileStack: {screen: ProfileStackNavigator},
+    createPhiloModal: {screen: createPhilo}
+}, {
+    mode: "modal",
+    headerMode: "none"
+});
 
-export default createAppContainer(ProfileStackNavigator);
+
+export default createAppContainer(ModalStack);

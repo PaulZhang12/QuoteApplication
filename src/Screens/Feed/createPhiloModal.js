@@ -5,7 +5,8 @@ import ExtraDimensions from 'react-native-extra-dimensions-android';
 import Icon from 'react-native-vector-icons/Feather';
 import {Button} from 'native-base';
 import {CheckBox} from 'react-native-elements';
-
+import {addPhilo} from "../../Services/QuoteAPI";
+import {connect} from "react-redux";
 
 class createPhiloModal extends Component {
 
@@ -21,7 +22,7 @@ class createPhiloModal extends Component {
         this.submit = this.submit.bind(this);
     }
 
-    closeModal = () => this.props.navigation.navigate('Feed');
+    closeModal = () => this.props.navigation.goBack();
 
     titleTextChange = (text) => {
         this.setState({titleText: text})
@@ -32,9 +33,8 @@ class createPhiloModal extends Component {
     };
 
     submit = () => {
+        this.props.dispatchAddPhilo({quote: this.state.titleText, author: "Paul Zhang", beginningText: this.state.descriptionText});
         this.closeModal();
-        console.warn(this.state);
-        return this.state;
     };
 
 
@@ -139,4 +139,14 @@ const styles = StyleSheet.create({
     }
 });
 
-export default createPhiloModal;
+const mapStateToProps = (state) => {
+    return {philos: state};
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        dispatchAddPhilo: (philo) => dispatch(addPhilo(philo))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(createPhiloModal);

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {View, Text, ScrollView, StyleSheet, SafeAreaView, ActivityIndicator} from "react-native";
+import {View, Text, ScrollView, StyleSheet, SafeAreaView, ActivityIndicator, RefreshControl} from "react-native";
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import CardComponent from '../../Components/CardComponent';
 import {Button} from 'native-base';
@@ -31,26 +31,49 @@ class FeedScreen extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            refreshing: false,
+            philoArray: []
+        };
     }
+
     componentDidMount(){
         this.props.loadPhilos();
+    }
+
+    componentDidUpdate(prevProps){
+        if(prevProps.philos != this.props.philos)
+            this.onRefresh();
     }
 
     getCardArray(PhilosArray){
         let CardArray = [];
         PhilosArray.map(quoteObject => {
             CardArray.push(<CardComponent quote={quoteObject.quote} author={quoteObject.author}
-                                          beginningText={"My name is Paul"}/>);
+                                          beginningText={(quoteObject.beginningText != null) ? quoteObject.beginningText: "My name is Paul"}/>);
         });
-        return CardArray;
+        this.setState({philoArray: CardArray});
     }
+
+    onRefresh = () => {
+        this.setState({refreshing: true});
+        (this.props.philos.isLoading || this.props.philos.isLoading==null) ? <ActivityIndicator/> : this.getCardArray(this.props.philos.philos);
+        this.setState({refreshing: false});
+    };
 
 
     render() {
         return (
             <SafeAreaView style={styles.layout}>
-                <ScrollView>
-                    {(this.props.philos.isLoading || this.props.philos.isLoading==null) ? <ActivityIndicator/> : this.getCardArray(this.props.philos.philos)}
+                <ScrollView
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this.onRefresh}
+                            />
+                    }
+                >
+                    {this.state.philoArray}
                 </ScrollView>
             </SafeAreaView>
         )

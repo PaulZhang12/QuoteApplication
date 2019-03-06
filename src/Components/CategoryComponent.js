@@ -1,42 +1,48 @@
-import React, { Component } from 'react';
-import { AppRegistry, Text, View } from 'react-native';
+import React, { Component } from "react"
+import { AppRegistry, View, Image, StyleSheet, Text, TextInput, SafeAreaView,} from 'react-native'
 
-class Blink extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { isShowingText: true };
-
-        // Toggle the state every second
-        setInterval(() => (
-            this.setState(previousState => (
-                { isShowingText: !previousState.isShowingText }
-            ))
-        ), 1000);
-    }
-
-    render() {
-        if (!this.state.isShowingText) {
-            return null;
-        }
-
+class CategoryComponent extends Component {
+    render () {
         return (
-            <Text>{this.props.text}</Text>
-        );
-    }
-}
-
-export default class BlinkApp extends Component {
-    render() {
-        return (
-            <View>
-                <Blink text='I love to blink' />
-                <Blink text='Yes blinking is so great' />
-                <Blink text='Why did they ever take this out of HTML' />
-                <Blink text='Look at me look at me look at me' />
+            <View style={styles.centering}>
+                <Image
+                    source={{uri: this.props.picture}}
+                    style={styles.monkey}/>
+                <Text style={styles.subtext}>{
+                    this.props.words
+                }</Text>
             </View>
-        );
+        )
     }
 }
 
-// skip this line if using Create React Native App
-AppRegistry.registerComponent('AwesomeProject', () => BlinkApp);
+
+
+
+
+
+const styles = StyleSheet.create ({
+        monkey: {
+            width: 100,
+            height: 100,
+            marginTop: 100,
+        },
+        subtext: {
+            color: "black",
+            fontSize: 30,
+            fontFamily: "Helvetica Neue",
+            fontWeight: "300",
+
+
+        },
+        centering: {
+            display: "flex",
+            alignItems: "center",
+            backgroundColor: "red",
+            marginLeft: 10,
+            marginLeft: 10
+        }
+    }
+);
+
+export default CategoryComponent;
